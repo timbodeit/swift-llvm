@@ -634,12 +634,9 @@ static const char *getDefaultTempDir(bool ErasedOnReboot) {
 void system_temp_directory(bool ErasedOnReboot, SmallVectorImpl<char> &Result) {
   Result.clear();
 
-  if (ErasedOnReboot) {
-    // There is no env variable for the cache directory.
-    if (const char *RequestedDir = getEnvTempDir()) {
-      Result.append(RequestedDir, RequestedDir + strlen(RequestedDir));
-      return;
-    }
+  if (const char *RequestedDir = getEnvTempDir()) {
+    Result.append(RequestedDir, RequestedDir + strlen(RequestedDir));
+    return;
   }
 
   if (getDarwinConfDir(ErasedOnReboot, Result))
