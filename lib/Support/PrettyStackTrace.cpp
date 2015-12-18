@@ -36,7 +36,7 @@ using namespace llvm;
 // objects, but we *really* cannot tolerate destructors running and do not want
 // to pay any overhead of synchronizing. As a consequence, we use a raw
 // thread-local variable.
-static LLVM_THREAD_LOCAL const PrettyStackTraceEntry *PrettyStackTraceHead =
+static const PrettyStackTraceEntry *PrettyStackTraceHead =
     nullptr;
 
 static unsigned PrintStack(const PrettyStackTraceEntry *Entry, raw_ostream &OS){
